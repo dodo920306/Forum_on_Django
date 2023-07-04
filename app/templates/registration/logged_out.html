@@ -1,0 +1,6 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <p>您已登出！</p>
+  <a href="{% url 'login'%}?next=/">重新登入</a>
+{% endblock %}

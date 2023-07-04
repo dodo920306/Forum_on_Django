@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h2>使用者資訊</h2>
+<a href="{% url 'password_change' %}">更改我的密碼</a>
+<form method="get">
+  {% csrf_token %}
+  <label for="username">請輸入使用者帳號:</label>
+  <input type="text" id="username" name="username">
+  <button type="submit">查詢</button>
+</form>
+{% if error_message %}
+  <p>{{ error_message }}</p>
+{% else %}
+  {% if user.id == request.user.id %}
+  <form method="post">
+    {% csrf_token %}
+    <p>帳號: {{ user.username }}</p>
+    <label for="nickname">暱稱:</label>
+    <input type="text" id="nickname" name="nickname" value="{{ user.nickname }}">
+    <br />
+    <label for="email">電子郵件:</label>
+    <input type="email" id="email" name="email" value="{{ user.email }}">
+    <p>登入次數: {{ user.login_count }}</p>
+    <p>上次登入時間: {{ user.last_login }}</p>
+    <p>發表文章數: {{ user.post_count }}</p>
+    <input type="submit" value="更改我的資訊">
+  </form>
+  {% else %}
+    <p>帳號: {{ user.username }}</p>
+    <p>暱稱: {{ user.nickname }}</p>
+    <p>電子郵件: {{ user.email }}</p>
+    <p>登入次數: {{ user.login_count }}</p>
+    <p>上次登入時間: {{ user.last_login }}</p>
+    <p>發表文章數: {{ user.post_count }}</p>
+  {% endif %}
+{% endif %}
+{% endblock content %}

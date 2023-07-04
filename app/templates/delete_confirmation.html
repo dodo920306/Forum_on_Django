@@ -1,0 +1,11 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <p>請確認是否刪除文章：{{ post.title }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="確定">
+  </form>
+  <br />
+  <button onclick="window.location.href='{% url 'board' %}?board={{ post.board }}';">取消</button>
+{% endblock content %}

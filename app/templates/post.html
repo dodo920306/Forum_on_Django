@@ -1,0 +1,11 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <p style="width: 500px;">作者 {{ post.author.username }} ({{ post.author.nickname }})</p>
+  <p>標題 {{ post.title }}</p>
+  <p>時間 {{ post.created_at }}</p>
+  <p>{{ post.content|linebreaks }}</p>
+  {% if post.image %}
+    <img src="{{ post.image.url }}" style="width: 500px; height: auto;">
+  {% endif %}
+{% endblock content %}

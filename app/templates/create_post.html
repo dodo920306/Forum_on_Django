@@ -1,0 +1,9 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>發表文章</h2>
+  <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+  <button type="submit">送出</button>
+{% endblock content %}

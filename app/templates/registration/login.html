@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>你已經登入囉。</p>
+    {% else %}
+      {% if form.errors %}
+        <p>使用者帳號或密碼錯誤，請重試。</p>
+      {% endif %}
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td>帳號：</td>
+            <td>{{ form.username }}</td>
+          </tr>
+          <tr>
+            <td>密碼：</td>
+            <td>{{ form.password }}</td>
+          </tr>
+        </table>
+        <input type="submit" value="登入">
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+  
+      {# Assumes you setup the password_reset view in your URLconf #}
+      <p><a href="{% url 'password_reset' %}">忘記密碼？</a></p>
+      <p>沒有帳號？<a href="{% url 'register' %}">立即註冊</a>！</p>
+    {% endif %}
+  {% endif %}
+
+{% endblock %}

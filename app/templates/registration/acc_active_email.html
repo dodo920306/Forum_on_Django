@@ -1,0 +1,4 @@
+{% autoescape off %}
+{{ user.username }}，您好。
+<a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">請點此以完成信箱驗證。</a>
+{% endautoescape %}

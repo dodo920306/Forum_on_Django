@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./app
+    command: gunicorn the_forum_project.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - django_forum_static_volume:/home/app/web/staticfiles
+      - django_forum_media_volume:/home/app/web/mediafiles
+    ports:
+      - 8000
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - django_forum_postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.db
+  nginx:
+    build: ./nginx
+    volumes:
+      - django_forum_static_volume:/home/app/web/staticfiles
+      - django_forum_media_volume:/home/app/web/mediafiles
+    ports:
+      - ${port}:80
+    depends_on:
+      - web
+
+volumes:
+  django_forum_postgres_data:
+    external: true
+  django_forum_static_volume:
+    external: true
+  django_forum_media_volume:
+    external: true

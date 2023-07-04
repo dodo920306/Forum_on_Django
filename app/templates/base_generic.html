@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+      <title>The Forum</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block sidebar %}
+      <!-- insert default navigation text for every page -->
+      <div class="sidebar-nav">
+        <a href="{% url 'index' %}">The forum</a>
+        {% if user.is_authenticated %}
+        <div>
+          <span>歡迎，{{ request.user.username }}！</span>
+          <a href="{% url 'profile' %}?username={{ request.user.username }}" style="margin-left: 10px;">使用者資訊</a>
+          <a href="{% url 'create_post' %}" style="margin-left: 10px;">發表文章</a>
+          <a href="/admin/" style="margin-left: 10px;">控制台</a>
+          <a href="{% url 'logout' %}?next=/" style="margin-left: 10px;">登出</a>
+        </div>
+        {% else %}
+          <a href="{% url 'login' %}?next=/" style="margin-left: 10px;">登入</a>
+        {% endif %}
+      </div>
+      <hr>
+    {% endblock %}
+    {% block content %}
+      <!-- default content text (typically empty) -->
+    {% endblock %}
+  </body>
+  <style>
+    .sidebar-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+  </style>
+</html>

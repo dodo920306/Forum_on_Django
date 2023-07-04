@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h2>看板列表</h2>
+<ul>
+    {% for board in boards %}
+    <li><a href="{% url 'board' %}?board={{ board.name }}">{{ board.name }}</a></li>
+    {% endfor %}
+</ul>
+<style>
+    li {
+      padding: 10px;
+    }
+</style>
+{% endblock content %}
