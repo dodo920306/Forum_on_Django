@@ -53,7 +53,7 @@ Return to the website, if you find the boards you just create shown on the page.
 
 The last thing you should do is check if email works fine. You can register new users by the 「立即註冊」 option on the login page. The forum will send an email to new users if they filled in their email when registration to verify their email.
 
-Please check out if users can receive the email verification emails successfully.
+Please check out if users can receive the email verification emails successfully. If not, please make sure that **the password you input can be used as app password** as mentioned in prerequisites.
 
 If you encounter any problem, use
 ```!bash
