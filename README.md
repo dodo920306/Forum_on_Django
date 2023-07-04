@@ -1,4 +1,4 @@
-# Forun in Django
+# Forun on Django
 ## Prerequisites
 Please ensure that you already have Docker & Docker-compose on your computer, you can find more information according to your system [on this docker official page](https://docs.docker.com/engine/install/). Please prepare an email account and password for the forum, and ensure that this password **can be used as app password** as shown in [this page](https://support.google.com/accounts/answer/185833).
 
